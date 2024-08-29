@@ -5,7 +5,7 @@ const app = express();
 
 
 
-app.use(express.static('public/build'));
+app.use(express.static('./public/build'));
 
 app.use(express.json());
 
