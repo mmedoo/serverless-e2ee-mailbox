@@ -5,17 +5,17 @@ const { useState, useCallback } = require('react');
 
 
 async function sendData(location, message) {
-	await axios.post('./import',
+	return await axios.post('./import',
 		{ location, message })
-		.then(() => alert("Message Imported Successfully"))
+		.then(() => ("Message Imported Successfully"))
 		.catch((e) => {
 			console.error(e);
-			alert("Message is NOT Imported. Check Console for details");
+			return ("Message is NOT Imported. Check Console for details");
 		})
 }
 
 
-function Form() {
+function Form({ shown, setOutput }) {
 	const [loc, setLoc] = useState("");
 	const [locHash, setLocHash] = useState("");
 	const [message, setMessage] = useState("");
@@ -23,19 +23,23 @@ function Form() {
 
 	const handleSubmit = useCallback(async (e) => {
 		e.preventDefault();
-
+		
+		setOutput({loading: true});
+		
 		e.target.setAttribute("disabled", "true");
 		
 		let locHashed = hashLocation(loc, locHash);
 		let enMsg = encryptMessage(message, key);
 		
-		await sendData(locHashed, enMsg);
+		let msg = await sendData(locHashed, enMsg);
 
 		e.target.setAttribute("disabled", "false");
+
+		setOutput({loading: false, text: msg});
 	}, [loc, message, locHash, key]);
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className={`${shown === "im" ? "" : "off"}`} onSubmit={handleSubmit}>
 
 			<label htmlFor='loc'>Location</label>
 
