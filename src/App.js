@@ -28,7 +28,7 @@ function App() {
 				
 				<Export setOutput={setOutput} shown={shown} />
 				
-				{output.loading && <div id="display" className="loader"></div>}
+				{output.loading && <div id="display" className="loading"></div>}
 
 				{!output.loading && <div id="display">{output.text}</div>}
 			</div>

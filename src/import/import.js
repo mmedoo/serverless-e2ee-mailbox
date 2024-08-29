@@ -24,7 +24,7 @@ function Form({ shown, setOutput }) {
 	const handleSubmit = useCallback(async (e) => {
 		e.preventDefault();
 		
-		setOutput({loading: true});
+		setOutput({ loading: true });
 		
 		e.target.setAttribute("disabled", "true");
 		
@@ -35,7 +35,7 @@ function Form({ shown, setOutput }) {
 
 		e.target.setAttribute("disabled", "false");
 
-		setOutput({loading: false, text: msg});
+		setOutput({ text: msg });
 	}, [loc, message, locHash, key]);
 
 	return (
