@@ -3,7 +3,7 @@ name: Building App
 on:
   push:
     branches:
-      - main
+      - client
 
 jobs:
   build:
@@ -16,15 +16,15 @@ jobs:
         # build files directory inside branch.
         # if it doesn't exist, it will be created.
         # default: root
-        TARGET_DIRECTORY: './public/build'
+        TARGET_DIRECTORY: './public'
 
         # branch name, if doesn't exist, it will be created
         # if it doesn't exist, it will be created.
         # default: build
-        BRANCH_NAME: 'main'
+        BRANCH_NAME: 'client'
 
         # directory of your React app
         # default: .
-        APP_DIRECTORY: './public'
+        # APP_DIRECTORY: './public'
 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
