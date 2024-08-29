@@ -3,7 +3,7 @@ name: Building App
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
         # branch name, if doesn't exist, it will be created
         # if it doesn't exist, it will be created.
         # default: build
-        BRANCH_NAME: 'master'
+        BRANCH_NAME: 'main'
 
         # directory of your React app
         # default: .
