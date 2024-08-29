@@ -4,8 +4,8 @@ import axios from 'axios';
 import { hashLocation, decryptMessage } from '../crypto';
 const { useState, useCallback, useRef } = require('react');
 
-async function sendRequest(loc) {
-	const {data} = await axios.post('./export', { loc })
+async function sendRequest(location) {
+	const data = await axios.post('./export', { location })
 		.catch((e) => {
 			console.error(e);
 			return null;
@@ -43,7 +43,7 @@ function ExportForm() {
 		}
 
 		try {
-			displayRef.current.innerText = decryptMessage(res, key);
+			displayRef.current.innerText = decryptMessage(res.data, key);
 		} catch (e) {
 			console.error(e);
 			displayRef.current.innerText = "Error: Decryption failed. Check Console for more details.";

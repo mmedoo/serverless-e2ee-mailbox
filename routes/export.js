@@ -7,18 +7,15 @@ router.post('/export', async (req, res) => {
 	const connection = await newConnection();
 	const dataModel = await newDataModel(connection);
 	
-	const {loc} = req.body;
+	const {location} = req.body;
 	
 	const object = await dataModel.findOne({
 		attributes: ['message'],
-		where: { location: loc }
-	}).catch((err) => {
-		console.log(err);
-		res.status(500).send('Error Exporting mail');
+		where: { location }
 	});
-	
-	res.send(object.message);
 
+	object ? res.send(object.message) : res.status(404).send('No mail found');
+	
 	connection.close();
 });
 
