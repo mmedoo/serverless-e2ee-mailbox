@@ -1,5 +1,3 @@
-import '../import/form.css';
-import './export.css';
 import axios from 'axios';
 import { hashLocation, decryptMessage } from '../crypto';
 const { useState, useCallback } = require('react');
@@ -39,7 +37,8 @@ function ExportForm({ shown, setOutput }) {
 		}
 
 		try {
-			setOutput({text: decryptMessage(res.data, key)});
+			setOutput({ text: decryptMessage(res.data, key) });
+			e.target.reset();
 		} catch (e) {
 			console.error(e);
 			setOutput({text: "Error: Decryption failed. Check Console for more details."});
@@ -60,7 +59,7 @@ function ExportForm({ shown, setOutput }) {
 				onChange={(e) => setLoc(e.target.value)}
 			/>
 
-			<label htmlFor='locHash'>Location Hash</label>
+			<label htmlFor='locHash'>Location Key</label>
 
 			<input required
 				name='locHash'

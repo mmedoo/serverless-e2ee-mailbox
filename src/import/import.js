@@ -1,4 +1,3 @@
-import './form.css';
 import axios from 'axios';
 import { hashLocation, encryptMessage } from '../crypto';
 const { useState, useCallback } = require('react');
@@ -7,10 +6,10 @@ const { useState, useCallback } = require('react');
 async function sendData(location, message) {
 	return await axios.post('./import',
 		{ location, message })
-		.then(() => ("Message Imported Successfully"))
+		.then(() => 200)
 		.catch((e) => {
 			console.error(e);
-			return ("Message is NOT Imported. Check Console for details");
+			return (500);
 		})
 }
 
@@ -31,11 +30,20 @@ function Form({ shown, setOutput }) {
 		let locHashed = hashLocation(loc, locHash);
 		let enMsg = encryptMessage(message, key);
 		
-		let msg = await sendData(locHashed, enMsg);
+		let requestStatus = await sendData(locHashed, enMsg);
+		let msg;
+
+		if (requestStatus === 200) {
+			msg = "Message Imported Successfully";
+			e.target.reset();
+		} else if (requestStatus === 500) {
+			msg = "Message is NOT Imported. Check Console for details";
+		}
 
 		e.target.setAttribute("disabled", "false");
 
 		setOutput({ text: msg });
+
 	}, [loc, message, locHash, key]);
 
 	return (
@@ -51,7 +59,7 @@ function Form({ shown, setOutput }) {
 				onChange={(e) => setLoc(e.target.value)}
 			/>
 
-			<label htmlFor='locHash'>Location Hash</label>
+			<label htmlFor='locHash'>Location Key</label>
 
 			<input required
 				name='locHash'
