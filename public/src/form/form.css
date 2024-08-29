@@ -1,0 +1,32 @@
+form > * {
+	display: block;
+}
+
+label {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+input, textarea {
+	margin-bottom: 1rem;
+	width: 400px;
+	height: 30px;
+	font-size: 1.2rem;
+	font-family: monospace;
+}
+button[type="submit"]:active {
+	background: #888;
+	border: none
+}
+button[type="submit"]:hover {
+	background: #aaa;
+	border: none
+}
+button[type="submit"] {
+	margin-top: 1rem;
+	width: 150px;
+	height: 40px;
+	font-size: 1.2rem;
+	font-family: monospace;
+	cursor: pointer;
+}

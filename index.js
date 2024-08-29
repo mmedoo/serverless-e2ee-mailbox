@@ -5,15 +5,13 @@ const app = express();
 
 
 
-app.use(express.static('public'));
+app.use(express.static('public/build'));
 
 app.use(express.json());
 
 app.use('/', importRouter);
 app.use('/', exportRouter);
 
-app.listen(8080, () => {
-	console.log('Server started');
-});
+app.listen(8080);
 
 module.exports = app;
