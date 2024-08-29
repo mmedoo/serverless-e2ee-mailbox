@@ -72,6 +72,10 @@ input, textarea {
 	font-family: monospace;
 }
 
+textarea {
+	height: 100px;
+}
+
 button[type="submit"]:active {
 	background: #888;
 	border: none
