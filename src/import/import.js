@@ -31,18 +31,26 @@ function Form({ shown, setOutput }) {
 		let enMsg = encryptMessage(message, key);
 		
 		let requestStatus = await sendData(locHashed, enMsg);
-		let msg;
+		let outputString;
 
-		if (requestStatus === 200) {
-			msg = "Message Imported Successfully";
-			e.target.reset();
-		} else if (requestStatus === 500) {
-			msg = "Message is NOT Imported. Check Console for details";
+		switch (requestStatus) {
+			case 200:
+				outputString = "Message Imported Successfully";
+				outputString += `\nThis is how your message is stored in the database:`;
+				outputString += `\nLocation: ${loc}\n`;
+				outputString += `\nMessage: ${enMsg}`;
+				e.target.reset();
+				break;
+			case 500:
+				outputString = "Message is NOT Imported. Check Console for details";
+				break;
+			default:
+				break;
 		}
 
 		e.target.setAttribute("disabled", "false");
 
-		setOutput({ text: msg });
+		setOutput({ text: outputString });
 
 	}, [loc, message, locHash, key]);
 
