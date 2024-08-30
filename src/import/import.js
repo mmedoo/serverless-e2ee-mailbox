@@ -63,7 +63,7 @@ function Form({ shown, setOutput }) {
 
 			<input required
 				name='locHash'
-				type="text"
+				type="password"
 				placeholder="Location Hash..."
 				value={locHash}
 				onChange={(e) => setLocHash(e.target.value)}

@@ -55,7 +55,6 @@ function ExportForm({ shown, setOutput }) {
 				type="password"
 				placeholder="Location..."
 				name='loc'
-				value={loc}
 				onChange={(e) => setLoc(e.target.value)}
 			/>
 
@@ -65,7 +64,6 @@ function ExportForm({ shown, setOutput }) {
 				name='locHash'
 				type="password"
 				placeholder="Location Hash..."
-				value={locHash}
 				onChange={(e) => setLocHash(e.target.value)}
 			/>
 
@@ -73,9 +71,8 @@ function ExportForm({ shown, setOutput }) {
 
 			<input required
 				name='key'
-				type="text"
+				type="password"
 				placeholder="Key..."
-				value={key}
 				onChange={(e) => setKey(e.target.value)}
 			/>
 

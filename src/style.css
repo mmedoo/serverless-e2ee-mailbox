@@ -11,25 +11,29 @@
 	width: 100%;
 	height: 50px;
 	background-color: white;
-	max-width: 750px;
+	width: 100%;
+	justify-content: center;
+	border-bottom: 2px solid #ccc;
 }
 
 #header > div {
-	flex-grow: 1;
-	flex-basis: 0;
+	box-sizing: border-box;
+	max-width: 375px;
+	width: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font: 700 1.5em 'Arial';
 	cursor: pointer;
+	border: 4px solid transparent;
 }
 
 #header > div:not(.active):hover {
 	background-color: #e0e0e0;
 }
 
-.active {
-	border: 4px solid #888;
+#header > .active {
+	border-color: #888;
 	background-color: #c0c0c0;
 }
 
