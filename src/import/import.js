@@ -22,25 +22,38 @@ function Form({ shown, setOutput }) {
 
 	const handleSubmit = useCallback(async (e) => {
 		e.preventDefault();
-		
+
 		setOutput({ loading: true });
-		
+
 		e.target.setAttribute("disabled", "true");
-		
+
 		let locHashed = hashLocation(loc, locHash);
 		let enMsg = encryptMessage(message, key);
-		
+
 		let requestStatus = await sendData(locHashed, enMsg);
 		let outputString;
 
 		switch (requestStatus) {
+
 			case 200:
-				outputString = "Message Imported Successfully";
-				outputString += `\nThis is how your message is stored in the database:`;
-				outputString += `\nLocation: ${loc}\n`;
-				outputString += `\nMessage: ${enMsg}`;
+				outputString = (<text>
+					Message Imported Successfully
+					<br />
+					This is how your message is stored in the database:
+					<br />
+					Location:
+					<br />
+					{locHashed}
+					<br />
+					<br />
+					Message:
+					<br />
+					{enMsg}
+				</text>);
+
 				e.target.reset();
 				break;
+
 			case 500:
 				outputString = "Message is NOT Imported. Check Console for details";
 				break;
@@ -78,7 +91,7 @@ function Form({ shown, setOutput }) {
 			/>
 
 			<label htmlFor='message'>Message</label>
-			
+
 			<textarea
 				required
 				name='message'
