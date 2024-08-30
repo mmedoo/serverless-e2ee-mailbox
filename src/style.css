@@ -50,6 +50,7 @@
 	border: 2px solid black;
 	margin: 3%;
 	font: 400 1.8em serif;
+	word-wrap: break-word;
 }
 
 .loading:after {
