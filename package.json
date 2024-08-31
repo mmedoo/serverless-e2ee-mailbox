@@ -4,5 +4,12 @@
     "express": "^4.19.2",
     "pg": "^8.12.0",
     "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"npx nodemon index.js\" \"cd '../client branch'; npm run start\""
   }
+  
 }
