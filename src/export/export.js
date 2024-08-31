@@ -5,6 +5,8 @@ const { useState, useCallback } = require('react');
 
 async function sendRequest(location) {
 	const data = await axios.post('./export', { location })
+	// const data = await axios.post('http://localhost:8080/export', { location })
+
 		.catch((e) => {
 			console.error(e);
 			return null;

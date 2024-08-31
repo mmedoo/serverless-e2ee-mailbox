@@ -5,6 +5,7 @@ const { useState, useCallback } = require('react');
 
 async function sendData(location, message) {
 	return await axios.post('./import',
+	// return await axios.post("http://localhost:8080/import",
 		{ location, message })
 		.then(() => 200)
 		.catch((e) => {
